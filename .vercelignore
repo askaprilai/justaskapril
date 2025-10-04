@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.env*
+types/
+script.js
+styles.css
+old-html-files/
+supabase-setup.sql
