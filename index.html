@@ -286,12 +286,17 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.2s; }
-        .feature-card:nth-child(2) { animation-delay: 0.4s; }
-        .feature-card:nth-child(3) { animation-delay: 0.6s; }
-        .feature-card:nth-child(4) { animation-delay: 0.8s; }
-        .feature-card:nth-child(5) { animation-delay: 1.0s; }
-        .feature-card:nth-child(6) { animation-delay: 1.2s; }
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Force animations to start immediately */
+        .feature-card.animate {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
 
         .feature-card:hover {
             transform: translateY(-10px);
@@ -678,18 +683,49 @@
 
             observer.observe(document.getElementById('demo'));
 
-            // Add scroll-triggered animations
+            // Improved scroll-triggered animations
             const animateOnScroll = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
+                        entry.target.classList.add('animate');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
                 });
+            }, {
+                threshold: 0.1,
+                rootMargin: '50px'
             });
 
-            document.querySelectorAll('.feature-card').forEach(card => {
+            // Add immediate animations for hero section
+            setTimeout(() => {
+                document.querySelector('.hero h1').style.opacity = '1';
+                document.querySelector('.hero p').style.opacity = '1';
+                document.querySelector('.hero-profile').style.opacity = '1';
+                document.querySelector('.cta-buttons').style.opacity = '1';
+            }, 100);
+
+            // Observe feature cards
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                // Add staggered entrance
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 * (index + 1));
+                
                 animateOnScroll.observe(card);
             });
+
+            // Also trigger animations on page load
+            setTimeout(() => {
+                document.querySelectorAll('.feature-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                        card.classList.add('animate');
+                    }, 100 * index);
+                });
+            }, 500);
         });
     </script>
 </body>
