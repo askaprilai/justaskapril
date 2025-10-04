@@ -277,6 +277,128 @@
             color: #FFD700;
         }
 
+        /* Just Ask April Banner */
+        .just-ask-april-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: 3px solid #333;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .just-ask-april-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        .banner-photo {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .april-banner-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #333;
+            object-fit: cover;
+        }
+
+        .experience-tag {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #FFD700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .banner-content {
+            flex: 1;
+        }
+
+        .banner-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner-content p {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .banner-cta {
+            background: #333;
+            color: #FFD700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .banner-cta:hover {
+            background: #1a1a1a;
+            transform: translateX(5px);
+        }
+
+        .script-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .script-tag {
+            background: #333;
+            color: #FFD700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .just-ask-april-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .banner-icon {
+                font-size: 2.5rem;
+            }
+
+            .banner-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .script-examples {
+                justify-content: center;
+            }
+
+            .script-tag {
+                font-size: 0.8rem;
+            }
+        }
+
         /* Features Section */
         .features {
             padding: 4rem 0;
@@ -612,6 +734,25 @@
                     <h1>Transform Your Leadership Impact + Streamline Your HR</h1>
                     <p style="font-size: 1.3rem; font-weight: 600; color: #FFD700; margin-bottom: 1rem; font-style: italic;">It's like having April in your pocket with over 30 years of team leadership experience</p>
                     <p>April Sabral is your go-to expert for everything team leadership and people. The only platform that combines proven leadership wisdom with complete HR management tools. Get instant AI coaching for difficult situations plus everything you need to manage your team effectively.</p>
+                    
+                    <!-- Just Ask April Banner -->
+                    <div class="just-ask-april-banner">
+                        <div class="banner-photo">
+                            <img src="April-Image1.png" alt="April Sabral - 30+ Years Leadership Experience" class="april-banner-img">
+                            <div class="experience-tag">30+ Years Leading Teams</div>
+                        </div>
+                        <div class="banner-content">
+                            <h3>📝 Get Exact Conversation Scripts Instantly</h3>
+                            <p><strong>"Just Ask April"</strong> - Need to fire someone? Write up an employee? Have a performance review? Get the exact words to say from April's 30+ years leading teams at Fortune 500 companies.</p>
+                            <div class="script-examples">
+                                <span class="script-tag">→ Termination Scripts</span>
+                                <span class="script-tag">→ Performance Reviews</span>
+                                <span class="script-tag">→ Difficult Conversations</span>
+                            </div>
+                            <a href="just-ask-april.html" class="banner-cta">🚀 Get Your Script Now →</a>
+                        </div>
+                    </div>
+                    
                     <div class="hero-cta">
                         <a href="#" class="btn-primary">Start Free Trial</a>
                         <a href="#" class="btn-secondary">Watch Demo</a>
