@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask April AI - Leadership Coaching + HR Management for Small Business</title>
+    <!-- Cache Bust: Oct 4, 2025 - 11:55 AM -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: #fff;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #FFD700;
+        }
+
+        .cta-btn {
+            background: #FFD700;
+            color: #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #333;
+            color: #FFD700;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .april-image {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFD700;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .april-image {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        .btn-primary {
+            background: #FFD700;
+            color: #333;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            color: #FFD700;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #333;
+            padding: 1rem 2rem;
+            border: 2px solid #333;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+            color: #FFD700;
+        }
+
+        /* Just Ask April Banner */
+        .just-ask-april-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: 3px solid #333;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .just-ask-april-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        .banner-photo {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .april-banner-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #333;
+            object-fit: cover;
+        }
+
+        .experience-tag {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #FFD700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .banner-content {
+            flex: 1;
+        }
+
+        .banner-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner-content p {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .banner-cta {
+            background: #333;
+            color: #FFD700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .banner-cta:hover {
+            background: #1a1a1a;
+            transform: translateX(5px);
+        }
+
+        .script-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .script-tag {
+            background: #333;
+            color: #FFD700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .transformation-example {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid #333;
+        }
+
+        .input-example, .output-example {
+            margin-bottom: 1rem;
+        }
+
+        .input-example:last-child, .output-example:last-child {
+            margin-bottom: 0;
+        }
+
+        .example-label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-example .example-label {
+            color: #dc2626;
+        }
+
+        .output-example .example-label {
+            color: #16a34a;
+        }
+
+        .example-text {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-style: italic;
+            border-left: 4px solid #333;
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .just-ask-april-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .banner-icon {
+                font-size: 2.5rem;
+            }
+
+            .banner-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .script-examples {
+                justify-content: center;
+            }
+
+            .script-tag {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .feature-section {
+            margin-bottom: 4rem;
+            padding: 3rem 0;
+        }
+
+        .feature-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .feature-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .feature-number {
+            background: #FFD700;
+            color: #333;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .feature-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .feature-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .feature-text h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .feature-text p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .feature-visual {
+            background: #333;
+            border-radius: 12px;
+            padding: 2rem;
+            color: #fff;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .demo-screen {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 100%;
+            color: #333;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .demo-header {
+            background: #FFD700;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .demo-content {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Animated Chat Box */
+        .chat-demo {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            background: #FFD700;
+            color: #333;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-status {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-messages {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message.ai {
+            text-align: left;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .message.user .message-bubble {
+            background: #333;
+            color: #FFD700;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.ai .message-bubble {
+            background: #FFD700;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            color: #FFD700;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 2px;
+        }
+
+        .typing-dots span {
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { opacity: 0; }
+            40% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-demo.active .typing-indicator {
+            display: flex;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #FFD700;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 2rem;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .feature-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Ask April AI</a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#ai-coach" class="nav-link">AI Coach + HR</a>
+                <a href="courses.html" class="nav-link">Courses + Training</a>
+                <a href="just-ask-april.html" class="nav-link">Just Ask April</a>
+                <a href="#hr-dashboard" class="nav-link">HR Dashboard</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#" class="cta-btn" id="navTrialBtn">Start Free Trial</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Transform Your Leadership Impact + Streamline Your HR</h1>
+                    <p style="font-size: 1.3rem; font-weight: 600; color: #FFD700; margin-bottom: 1rem; font-style: italic;">It's like having April in your pocket with over 30 years of team leadership experience</p>
+                    <p>April Sabral is your go-to expert for everything team leadership and people. The only platform that combines proven leadership wisdom with complete HR management tools. Get instant AI coaching for difficult situations plus everything you need to manage your team effectively.</p>
+                    
+                    <!-- Just Ask April Banner -->
+                    <div class="just-ask-april-banner">
+                        <div class="banner-photo">
+                            <img src="April-Image1.png" alt="April Sabral - 30+ Years Leadership Experience" class="april-banner-img">
+                            <div class="experience-tag">30+ Years Leading Teams</div>
+                        </div>
+                        <div class="banner-content">
+                            <h3>🎯 Transform Your Words Into Professional Coaching</h3>
+                            <p><strong>"Just Ask April"</strong> - The Grammarly for Managers. Type what you want to say and watch April AI turn it into a professional coaching conversation that gets results.</p>
+                            
+                            <div class="transformation-example">
+                                <div class="input-example">
+                                    <span class="example-label">❌ What you want to say:</span>
+                                    <div class="example-text">"You're always late and it's unacceptable"</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="output-example">
+                                    <span class="example-label">✅ April AI transforms it to:</span>
+                                    <div class="example-text">"I've noticed you've been late several times this month. Help me understand what's happening so we can work together on a solution."</div>
+                                </div>
+                            </div>
+                            
+                            <a href="just-ask-april.html" class="banner-cta">🚀 Try the Script Transformer →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-cta">
+                        <a href="#" class="btn-primary">Start Free Trial</a>
+                        <a href="#" class="btn-secondary">Watch Demo</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="april-image">
+                        <img src="April-Image1.png" alt="Ask April AI - 30 Years Leadership Experience" style="width: 100%; height: auto; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section with 6 numbered sections -->
+        <section class="features">
+            <div class="container">
+                
+                <!-- Feature 1 -->
+                <div class="feature-section">
+                    <div class="feature-header">
+                        <div class="feature-number">1</div>
+                        <h2 class="feature-title">AI-Powered Conversation Scripts</h2>
+                        <p class="feature-subtitle">Get the exact words for any difficult conversation with employees</p>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-text">
+                            <h3>Never Wonder What to Say Again</h3>
+                            <p>The hardest part of leadership? Knowing exactly what to say when things get tough. Our AI coach gives you word-for-word scripts for performance reviews, terminations, and conflict resolution.</p>
+                            <ul class="feature-list">
+                                <li>Performance improvement conversations</li>
+                                <li>Termination discussions</li>
+                                <li>Conflict resolution scripts</li>
+                                <li>Salary negotiation guidance</li>
+                                <li>Team motivation strategies</li>
+                            </ul>
+                        </div>
+                        <div class="feature-visual">
+                            <div class="chat-demo" id="chatDemo">
+                                <div class="chat-header">
+                                    <div class="chat-status"></div>
+                                    Ask April AI - Live Demo
+                                </div>
+                                <div class="chat-messages" id="chatMessages">
+                                    <div class="typing-indicator">
+                                        April AI is typing...
+                                        <div class="typing-dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-section">
+                    <div class="feature-header">
+                        <div class="feature-number">2</div>
+                        <h2 class="feature-title">Complete HR Management System</h2>
+                        <p class="feature-subtitle">Handle all your people operations in one integrated platform</p>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-visual">
+                            <div class="demo-screen">
+                                <div class="demo-header">HR Dashboard Overview</div>
+                                <div class="demo-content">
+                                    👥 Employee Database<br>
+                                    📄 Document Templates<br>
+                                    📊 Performance Tracking<br>
+                                    📅 Time-off Management<br>
+                                    ⚖️ Compliance Monitoring<br>
+                                    📋 Onboarding Workflows
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Everything You Need for HR</h3>
+                            <p>Stop juggling multiple systems. Our integrated HR platform handles employee records, compliance, and workflows while the AI coach guides you through people challenges.</p>
+                            <ul class="feature-list">
+                                <li>Employee database and records</li>
+                                <li>Automated onboarding processes</li>
+                                <li>Performance review templates</li>
+                                <li>Time-off tracking and approval</li>
+                                <li>Compliance documentation</li>
+                                <li>Policy management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-section">
+                    <div class="feature-header">
+                        <div class="feature-number">3</div>
+                        <h2 class="feature-title">250+ Leadership Training Videos</h2>
+                        <p class="feature-subtitle">Learn from 30+ years of Fortune 500 and startup leadership experience</p>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-text">
+                            <h3>Master Every Leadership Situation</h3>
+                            <p>April Sabral's proven frameworks from leading teams at Fortune 500 companies and high-growth startups, broken down into actionable video lessons.</p>
+                            <ul class="feature-list">
+                                <li>Team building and motivation</li>
+                                <li>Performance management</li>
+                                <li>Difficult conversations</li>
+                                <li>Leadership communication</li>
+                                <li>Change management</li>
+                                <li>Building high-performance culture</li>
+                            </ul>
+                        </div>
+                        <div class="feature-visual">
+                            <div class="demo-screen">
+                                <div class="demo-header">Learning Library</div>
+                                <div class="demo-content">
+                                    📚 Leadership Fundamentals (50 videos)<br>
+                                    🗣️ Communication Skills (40 videos)<br>
+                                    📊 Performance Management (35 videos)<br>
+                                    👥 Team Building (30 videos)<br>
+                                    🔧 Problem Solving (25 videos)<br>
+                                    🚀 Advanced Leadership (70 videos)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-section">
+                    <div class="feature-header">
+                        <div class="feature-number">4</div>
+                        <h2 class="feature-title">Team Assessment & Analytics</h2>
+                        <p class="feature-subtitle">Understand your team dynamics and identify improvement opportunities</p>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-visual">
+                            <div class="demo-screen">
+                                <div class="demo-header">Team Insights Dashboard</div>
+                                <div class="demo-content">
+                                    📈 Team Performance Trends<br>
+                                    🎯 Goal Achievement Tracking<br>
+                                    💬 Communication Patterns<br>
+                                    📊 Engagement Scores<br>
+                                    ⚠️ Risk Indicators<br>
+                                    🔍 Improvement Recommendations
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Data-Driven Team Insights</h3>
+                            <p>Get clear visibility into team performance, engagement, and areas for improvement with actionable recommendations from our AI coach.</p>
+                            <ul class="feature-list">
+                                <li>Individual performance tracking</li>
+                                <li>Team engagement surveys</li>
+                                <li>Goal setting and monitoring</li>
+                                <li>Communication effectiveness</li>
+                                <li>Risk identification</li>
+                                <li>Personalized coaching recommendations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-section">
+                    <div class="feature-header">
+                        <div class="feature-number">5</div>
+                        <h2 class="feature-title">Document Automation & Templates</h2>
+                        <p class="feature-subtitle">Generate professional HR documents instantly with AI assistance</p>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-text">
+                            <h3>Professional HR Documents in Seconds</h3>
+                            <p>From job descriptions to performance improvement plans, generate legally-compliant documents tailored to your specific situation and state requirements.</p>
+                            <ul class="feature-list">
+                                <li>Job descriptions and postings</li>
+                                <li>Performance improvement plans</li>
+                                <li>Warning and termination letters</li>
+                                <li>Employee handbooks</li>
+                                <li>Policy documentation</li>
+                                <li>Contract templates</li>
+                            </ul>
+                        </div>
+                        <div class="feature-visual">
+                            <div class="demo-screen">
+                                <div class="demo-header">Document Generator</div>
+                                <div class="demo-content">
+                                    📄 Performance Review Template<br>
+                                    ⚠️ Written Warning (Generated)<br>
+                                    📋 Job Description (Marketing)<br>
+                                    📖 Employee Handbook (Updated)<br>
+                                    ⚖️ Termination Letter (CA Compliant)<br>
+                                    📝 Policy Updates (3 pending)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-section">
+                    <div class="feature-header">
+                        <div class="feature-number">6</div>
+                        <h2 class="feature-title">24/7 AI Leadership Coach</h2>
+                        <p class="feature-subtitle">Get instant guidance on any leadership challenge, anytime</p>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-visual">
+                            <div class="demo-screen">
+                                <div class="demo-header">Just Ask April</div>
+                                <div class="demo-content">
+                                    💬 "How do I handle a difficult employee?"<br>
+                                    🎯 "My team missed their goals again..."<br>
+                                    📞 "I need to have a termination conversation"<br>
+                                    👥 "How do I motivate a remote team?"<br>
+                                    📊 "Help me with performance reviews"<br>
+                                    <strong>Available 24/7 for instant guidance</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-text">
+                            <h3>April's Expertise Available Anytime</h3>
+                            <p>Whether it's 3 AM or during a crisis, get immediate access to 30+ years of leadership wisdom through our AI coach trained on April's proven methodologies.</p>
+                            <ul class="feature-list">
+                                <li>Instant responses to leadership questions</li>
+                                <li>Situation-specific guidance</li>
+                                <li>Step-by-step action plans</li>
+                                <li>Crisis management support</li>
+                                <li>Ongoing coaching conversations</li>
+                                <li>Learning from every interaction</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="#">AI Coach</a>
+                    <a href="#">HR Management</a>
+                    <a href="#">Learning Library</a>
+                    <a href="#">Pricing</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Blog</a>
+                    <a href="#">Case Studies</a>
+                    <a href="#">Help Center</a>
+                    <a href="#">Templates</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ask April AI. All rights reserved. Leadership coaching + HR management for small business success.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Chat Demo
+        class ChatDemo {
+            constructor() {
+                this.chatMessages = [
+                    {
+                        type: 'user',
+                        text: 'Sarah is always late and I need to write her up. How do I handle this conversation?',
+                        delay: 1000
+                    },
+                    {
+                        type: 'ai',
+                        text: 'I understand this is a difficult situation. Here\'s how to approach this professionally...',
+                        delay: 2000
+                    },
+                    {
+                        type: 'ai', 
+                        text: 'First, have a private conversation. Say: "Sarah, I\'ve noticed you\'ve been late 4 times this month. Can you help me understand what\'s happening?"',
+                        delay: 3000
+                    },
+                    {
+                        type: 'ai',
+                        text: 'Listen to her response, then explain the impact on the team. I\'ve also generated a written warning template for your state\'s requirements.',
+                        delay: 2500
+                    },
+                    {
+                        type: 'user',
+                        text: 'Perfect! Can you also update her employee file?',
+                        delay: 2000
+                    },
+                    {
+                        type: 'ai',
+                        text: 'Absolutely! I\'ve updated Sarah\'s file with this incident and set a 30-day follow-up reminder. Her performance improvement plan is ready for review.',
+                        delay: 2500
+                    }
+                ];
+
+                this.currentMessageIndex = 0;
+                this.isRunning = false;
+                this.init();
+            }
+
+            init() {
+                // Start chat demo when section comes into view
+                const chatObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !this.isRunning) {
+                            setTimeout(() => this.startChatDemo(), 500);
+                            this.isRunning = true;
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                const chatSection = document.querySelector('#chatDemo');
+                if (chatSection) {
+                    chatObserver.observe(chatSection);
+                }
+            }
+
+            showTypingIndicator() {
+                const chatDemo = document.getElementById('chatDemo');
+                if (chatDemo) {
+                    chatDemo.classList.add('active');
+                }
+            }
+
+            hideTypingIndicator() {
+                const chatDemo = document.getElementById('chatDemo');
+                if (chatDemo) {
+                    chatDemo.classList.remove('active');
+                }
+            }
+
+            addMessage(message) {
+                const messagesContainer = document.getElementById('chatMessages');
+                if (!messagesContainer) return;
+                
+                this.hideTypingIndicator();
+                
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${message.type}`;
+                
+                const bubbleElement = document.createElement('div');
+                bubbleElement.className = 'message-bubble';
+                bubbleElement.textContent = message.text;
+                
+                messageElement.appendChild(bubbleElement);
+                messagesContainer.appendChild(messageElement);
+                
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Remove old messages to keep chat clean
+                const messages = messagesContainer.querySelectorAll('.message');
+                if (messages.length > 4) {
+                    messages[0].remove();
+                }
+            }
+
+            startChatDemo() {
+                if (this.currentMessageIndex >= this.chatMessages.length) {
+                    this.currentMessageIndex = 0;
+                    const messagesContainer = document.getElementById('chatMessages');
+                    if (messagesContainer) {
+                        messagesContainer.innerHTML = '<div class="typing-indicator">April AI is typing...<div class="typing-dots"><span></span><span></span><span></span></div></div>';
+                    }
+                }
+
+                const message = this.chatMessages[this.currentMessageIndex];
+                
+                this.showTypingIndicator();
+                
+                setTimeout(() => {
+                    this.addMessage(message);
+                    this.currentMessageIndex++;
+                    
+                    // Schedule next message
+                    setTimeout(() => this.startChatDemo(), message.delay);
+                }, 1000);
+            }
+        }
+
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburger?.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Initialize chat demo
+            new ChatDemo();
+
+            console.log('Ask April AI functionality initialized successfully!');
+        });
+    </script>
+</body>
+</html>
