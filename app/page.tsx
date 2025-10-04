@@ -50,12 +50,12 @@ export default function HomePage() {
         <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="text-left">
+              <div className="text-left animate-slide-in-left">
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Transform Your Leadership Impact + Streamline Your HR
                 </h1>
                 
-                <p className="text-xl font-semibold text-yellow-500 mb-4 italic">
+                <p className="text-xl font-semibold gradient-text mb-4 italic">
                   It's like having April in your pocket with over 30 years of team leadership experience
                 </p>
                 
