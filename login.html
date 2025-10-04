@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ask April AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .login-header h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #64748b;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .forgot-password a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+        }
+        
+        .signup-link a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .back-link a {
+            color: #64748b;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .back-link a:hover {
+            color: #2563eb;
+        }
+        
+        .demo-account {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .demo-account p {
+            margin: 0 0 10px 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .demo-btn {
+            background: #10b981;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .demo-btn:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="back-link">
+                <a href="index.html">← Back to homepage</a>
+            </div>
+            
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your Ask April AI account</p>
+            </div>
+            
+            <!-- Demo Account Info -->
+            <div class="demo-account">
+                <p>Try the demo with these credentials:</p>
+                <button type="button" class="demo-btn" onclick="fillDemoCredentials()">Use Demo Account</button>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" name="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" name="password" id="password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+                
+                <div class="forgot-password">
+                    <a href="#">Forgot your password?</a>
+                </div>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="signup.html">Sign up for free</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Fill demo credentials
+        function fillDemoCredentials() {
+            document.getElementById('email').value = 'demo@company.com';
+            document.getElementById('password').value = 'demo123';
+        }
+        
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const email = formData.get('email');
+            const password = formData.get('password');
+            
+            // Demo login logic
+            if (email === 'demo@company.com' && password === 'demo123') {
+                // Store demo user data
+                const demoUser = {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: 'demo@company.com',
+                    company: 'Demo Company',
+                    plan: 'starter'
+                };
+                localStorage.setItem('userData', JSON.stringify(demoUser));
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                // Check if user data exists from signup
+                const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+                if (userData.email === email) {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('Invalid credentials. Try the demo account or sign up for a new account.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

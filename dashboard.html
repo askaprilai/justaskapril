@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Ask April AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dashboard-container {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+        
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 20px 0;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .sidebar-header h2 {
+            color: #2563eb;
+            margin: 0;
+        }
+        
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+        
+        .nav-item {
+            display: block;
+            padding: 12px 20px;
+            color: #374151;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover,
+        .nav-item.active {
+            background: #f3f4f6;
+            color: #2563eb;
+            border-left-color: #2563eb;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .welcome-message h1 {
+            color: #1e293b;
+            margin: 0 0 5px 0;
+        }
+        
+        .welcome-message p {
+            color: #64748b;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .card-header h3 {
+            margin: 0;
+            color: #1e293b;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .employee-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .employee-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .employee-avatar {
+            width: 40px;
+            height: 40px;
+            background: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .employee-info h4 {
+            margin: 0 0 3px 0;
+            color: #1e293b;
+        }
+        
+        .employee-info p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            color: #374151;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            background: #e2e8f0;
+            color: #2563eb;
+        }
+        
+        .action-icon {
+            font-size: 1.2rem;
+        }
+        
+        .add-employee-btn {
+            background: #2563eb;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .add-employee-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .time-off-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .time-off-item:last-child {
+            border-bottom: none;
+        }
+        
+        .request-info h5 {
+            margin: 0 0 3px 0;
+            color: #1e293b;
+        }
+        
+        .request-info p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+        
+        .request-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .approve-btn, .deny-btn {
+            padding: 5px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .approve-btn {
+            background: #10b981;
+            color: white;
+        }
+        
+        .deny-btn {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .ai-coach-card {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .ai-coach-card h3 {
+            margin: 0 0 10px 0;
+        }
+        
+        .ai-coach-card p {
+            margin: 0 0 20px 0;
+            opacity: 0.9;
+        }
+        
+        .chat-btn {
+            background: white;
+            color: #2563eb;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .chat-btn:hover {
+            background: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Ask April AI</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active">📊 Dashboard</a>
+            <a href="#" class="nav-item">👥 Employees</a>
+            <a href="#" class="nav-item">📅 Time Off</a>
+            <a href="#" class="nav-item">📋 Onboarding</a>
+            <a href="#" class="nav-item">📊 Performance</a>
+            <a href="#" class="nav-item">📄 Documents</a>
+            <a href="#" class="nav-item">🤖 AI Coach</a>
+            <a href="#" class="nav-item">⚙️ Settings</a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="welcome-message">
+                <h1 id="welcomeMessage">Welcome back!</h1>
+                <p>Here's what's happening with your team today.</p>
+            </div>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="employeeCount">0</div>
+                <div class="stat-label">Active Employees</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Pending Time-off Requests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">New Hires This Month</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Upcoming Reviews</div>
+            </div>
+        </div>
+        
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Employee Management -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Team Overview</h3>
+                    </div>
+                    <div class="card-content">
+                        <button class="add-employee-btn" onclick="showAddEmployeeForm()">+ Add New Employee</button>
+                        <div class="employee-list" id="employeeList">
+                            <!-- Employees will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Time-off Requests -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Pending Time-off Requests</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="time-off-item">
+                            <div class="request-info">
+                                <h5>Sarah Johnson</h5>
+                                <p>Dec 18-22, 2024 • Vacation</p>
+                            </div>
+                            <div class="request-actions">
+                                <button class="approve-btn">Approve</button>
+                                <button class="deny-btn">Deny</button>
+                            </div>
+                        </div>
+                        <div class="time-off-item">
+                            <div class="request-info">
+                                <h5>Mike Chen</h5>
+                                <p>Dec 15, 2024 • Sick Day</p>
+                            </div>
+                            <div class="request-actions">
+                                <button class="approve-btn">Approve</button>
+                                <button class="deny-btn">Deny</button>
+                            </div>
+                        </div>
+                        <div class="time-off-item">
+                            <div class="request-info">
+                                <h5>Emma Davis</h5>
+                                <p>Jan 2-5, 2025 • Personal</p>
+                            </div>
+                            <div class="request-actions">
+                                <button class="approve-btn">Approve</button>
+                                <button class="deny-btn">Deny</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar Content -->
+            <div class="sidebar-content">
+                <!-- AI Coach -->
+                <div class="ai-coach-card">
+                    <h3>🤖 AI Management Coach</h3>
+                    <p>Get personalized advice for managing your team, handling difficult conversations, and improving leadership skills.</p>
+                    <button class="chat-btn" onclick="openAICoach()">Start Coaching Session</button>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="quick-actions">
+                            <a href="#" class="action-btn">
+                                <span class="action-icon">📄</span>
+                                Generate Employee Contract
+                            </a>
+                            <a href="#" class="action-btn">
+                                <span class="action-icon">📊</span>
+                                Create Performance Review
+                            </a>
+                            <a href="#" class="action-btn">
+                                <span class="action-icon">📋</span>
+                                New Onboarding Checklist
+                            </a>
+                            <a href="#" class="action-btn">
+                                <span class="action-icon">📅</span>
+                                Schedule Team Meeting
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Load user data and populate dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            if (userData.firstName) {
+                document.getElementById('welcomeMessage').textContent = `Welcome back, ${userData.firstName}!`;
+            }
+            
+            // Sample employees data
+            const employees = [
+                { name: 'Sarah Johnson', role: 'Marketing Manager', initials: 'SJ' },
+                { name: 'Mike Chen', role: 'Software Developer', initials: 'MC' },
+                { name: 'Emma Davis', role: 'Sales Representative', initials: 'ED' },
+                { name: 'John Smith', role: 'Customer Support', initials: 'JS' }
+            ];
+            
+            // Update employee count
+            document.getElementById('employeeCount').textContent = employees.length;
+            
+            // Populate employee list
+            const employeeList = document.getElementById('employeeList');
+            employees.forEach(employee => {
+                const employeeItem = document.createElement('div');
+                employeeItem.className = 'employee-item';
+                employeeItem.innerHTML = `
+                    <div class="employee-avatar">${employee.initials}</div>
+                    <div class="employee-info">
+                        <h4>${employee.name}</h4>
+                        <p>${employee.role}</p>
+                    </div>
+                `;
+                employeeList.appendChild(employeeItem);
+            });
+        });
+        
+        function showAddEmployeeForm() {
+            alert('Add Employee form would open here. In the full version, this would be a modal or separate page.');
+        }
+        
+        function openAICoach() {
+            alert('AI Coach chat interface would open here. This would integrate with your Delphi platform.');
+        }
+        
+        // Handle time-off approval/denial
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('approve-btn')) {
+                e.target.textContent = 'Approved ✓';
+                e.target.style.background = '#10b981';
+                e.target.disabled = true;
+                e.target.nextElementSibling.style.display = 'none';
+            }
+            
+            if (e.target.classList.contains('deny-btn')) {
+                e.target.textContent = 'Denied ✗';
+                e.target.style.background = '#ef4444';
+                e.target.disabled = true;
+                e.target.previousElementSibling.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

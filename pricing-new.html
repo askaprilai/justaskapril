@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Ask April AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #FFD700;
+        }
+
+        .cta-btn {
+            background: #FFD700;
+            color: #1a1a1a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #1a1a1a;
+            color: #FFD700;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 4rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-highlight h2 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .hero-highlight p {
+            color: #495057;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .coach-visual {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coach-avatar {
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .chat-bubble {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 12px;
+            border-bottom-left-radius: 4px;
+            margin-bottom: 1rem;
+            position: relative;
+            max-width: 200px;
+            text-align: left;
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 8px 12px 0;
+            border-color: transparent #fff transparent transparent;
+        }
+
+        .chat-bubble p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+
+        .coach-label {
+            color: #FFD700;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-highlight {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 2rem;
+            }
+            
+            .coach-visual {
+                margin-top: 2rem;
+            }
+        }
+
+        /* Pricing Grid */
+        .pricing-section {
+            margin: 4rem 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border-color: #FFD700;
+            background: linear-gradient(135deg, #FFD700 0%, #FFF 100%);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: #FFD700;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-period {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .plan-description {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .check-icon {
+            color: #666;
+            font-weight: 700;
+        }
+
+        .ai-feature {
+            background: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border-left: 3px solid #666;
+        }
+
+        .plan-btn {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #1a1a1a;
+            border-radius: 8px;
+            background: transparent;
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .plan-btn:hover,
+        .plan-btn.primary {
+            background: #1a1a1a;
+            color: #FFD700;
+        }
+
+        .plan-btn.primary {
+            background: #FFD700;
+            color: #1a1a1a;
+            border-color: #FFD700;
+        }
+
+        .plan-btn.primary:hover {
+            background: #1a1a1a;
+            color: #FFD700;
+            border-color: #1a1a1a;
+        }
+
+        /* AI Emphasis Section */
+        .ai-section {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 12px;
+        }
+
+        .ai-section h2 {
+            color: #fff;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 1200px) {
+            .ai-features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ai-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ai-feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: subtle-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtle-glow {
+            0% {
+                box-shadow: 0 2px 10px rgba(255, 215, 0, 0.1);
+            }
+            100% {
+                box-shadow: 0 2px 20px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        .ai-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .ai-feature-card:hover::before {
+            left: 100%;
+        }
+
+        .ai-feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-feature-card h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transition: text-shadow 0.3s ease;
+        }
+
+        .ai-feature-card:hover h3 {
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        .ai-feature-card p {
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        /* Video Banner */
+        .video-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFF 100%);
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 12px;
+            border: 2px solid #1a1a1a;
+        }
+
+        .video-banner h2 {
+            color: #1a1a1a;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-banner p {
+            color: #1a1a1a;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .video-stats .stat {
+            text-align: center;
+        }
+
+        .video-stats .stat strong {
+            display: block;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .video-stats .stat span {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        /* Comparison Banner */
+        .comparison-banner {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .comparison-banner h2 {
+            color: #1a1a1a;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .traditional-side, .april-side {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+        }
+
+        .april-side {
+            border-color: #FFD700;
+            background: linear-gradient(135deg, #FFD700 0%, #FFF 100%);
+        }
+
+        .traditional-side h3, .april-side h3 {
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .traditional-side ul, .april-side ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .traditional-side li, .april-side li {
+            padding: 0.75rem 0;
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 4rem 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Ask April AI</a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="cta-btn">Start Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>HR Software Built for Brick & Mortar Business</h1>
+                <p>The only HR platform designed specifically for retail, restaurants, and service businesses. Get AI coaching from 30 years of brick & mortar expertise + a complete learning library to train your team.</p>
+                
+                <div class="hero-highlight">
+                    <div class="highlight-content">
+                        <h2>Built for Brick & Mortar Success</h2>
+                        <p>While other HR software gives you generic templates, we give you <strong>April's AI Coach</strong> trained on 30 years of retail, restaurant, and service business expertise. Plus access to our complete learning library with 250+ video lessons designed specifically for brick & mortar teams.</p>
+                    </div>
+                    <div class="coach-visual">
+                        <div class="coach-avatar">A</div>
+                        <div class="chat-bubble">
+                            <p>"How should I handle an employee who's always late? Let me share what worked in my 30 years of retail management..."</p>
+                        </div>
+                        <div class="coach-label">April's AI Coach</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section id="pricing" class="pricing-section">
+                <div class="pricing-grid">
+                    <!-- Free Plan -->
+                    <div class="pricing-card">
+                        <div class="plan-name">Free Start</div>
+                        <div class="plan-price">$0</div>
+                        <div class="plan-period">per month</div>
+                        <div class="plan-description">Perfect for getting started with AI-powered HR</div>
+                        
+                        <ul class="features-list">
+                            <li><span class="check-icon">✓</span> Up to 5 employees</li>
+                            <li><span class="check-icon">✓</span> Basic employee database</li>
+                            <li><span class="check-icon">✓</span> Time-off requests & approvals</li>
+                            <li class="ai-feature"><span class="check-icon">✓</span> <strong>April's AI Coach (3 sessions/month)</strong></li>
+                            <li class="ai-feature"><span class="check-icon">✓</span> <strong>Basic Learning Library (50+ lessons)</strong></li>
+                            <li><span class="check-icon">✓</span> Brick & mortar templates</li>
+                            <li><span class="check-icon">✓</span> Email support</li>
+                        </ul>
+                        
+                        <a href="signup.html?plan=free" class="plan-btn">Start Free</a>
+                    </div>
+
+                    <!-- Starter Plan - Featured -->
+                    <div class="pricing-card featured">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="plan-name">Brick & Mortar Pro</div>
+                        <div class="plan-price">$29</div>
+                        <div class="plan-period">per month</div>
+                        <div class="plan-description">Complete solution for retail, restaurant & service businesses</div>
+                        
+                        <ul class="features-list">
+                            <li><span class="check-icon">✓</span> Up to 25 employees</li>
+                            <li><span class="check-icon">✓</span> Everything in Free, plus:</li>
+                            <li><span class="check-icon">✓</span> Industry-specific onboarding automation</li>
+                            <li><span class="check-icon">✓</span> Retail/restaurant performance templates</li>
+                            <li><span class="check-icon">✓</span> HR document generation</li>
+                            <li class="ai-feature"><span class="check-icon">✓</span> <strong>Unlimited April AI Coaching</strong></li>
+                            <li class="ai-feature"><span class="check-icon">✓</span> <strong>Complete Learning Library (250+ lessons)</strong></li>
+                            <li class="ai-feature"><span class="check-icon">✓</span> <strong>Retail & Restaurant Training Modules</strong></li>
+                            <li><span class="check-icon">✓</span> Team performance tracking</li>
+                            <li><span class="check-icon">✓</span> Priority support</li>
+                        </ul>
+                        
+                        <a href="signup.html?plan=starter" class="plan-btn primary">Start 14-Day Trial</a>
+                    </div>
+
+                    <!-- Professional Plan -->
+                    <div class="pricing-card">
+                        <div class="plan-name">Enterprise</div>
+                        <div class="plan-price">$99</div>
+                        <div class="plan-period">per month</div>
+                        <div class="plan-description">Advanced features for established businesses</div>
+                        
+                        <ul class="features-list">
+                            <li><span class="check-icon">✓</span> Up to 100 employees</li>
+                            <li><span class="check-icon">✓</span> Everything in Brick & Mortar Pro, plus:</li>
+                            <li><span class="check-icon">✓</span> Custom workflows & automation</li>
+                            <li><span class="check-icon">✓</span> Compliance tracking & reporting</li>
+                            <li><span class="check-icon">✓</span> Advanced analytics dashboard</li>
+                            <li class="ai-feature"><span class="check-icon">✓</span> <strong>Custom AI Training for Your Industry</strong></li>
+                            <li class="ai-feature"><span class="check-icon">✓</span> <strong>Custom Learning Library Content</strong></li>
+                            <li><span class="check-icon">✓</span> Multi-location management</li>
+                            <li><span class="check-icon">✓</span> API access & integrations</li>
+                            <li><span class="check-icon">✓</span> Dedicated success manager</li>
+                            <li><span class="check-icon">✓</span> Phone support</li>
+                        </ul>
+                        
+                        <a href="signup.html?plan=professional" class="plan-btn">Start Trial</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Library Banner -->
+            <section class="video-banner">
+                <div class="container">
+                    <div class="banner-content">
+                        <h2>250+ Video Lessons Built for Brick & Mortar Success</h2>
+                        <p>The most comprehensive learning library designed specifically for retail, restaurant, and service businesses. From customer service to inventory management - we've got your team covered.</p>
+                        <div class="video-stats">
+                            <div class="stat">
+                                <strong>250+</strong>
+                                <span>Video Lessons</span>
+                            </div>
+                            <div class="stat">
+                                <strong>15</strong>
+                                <span>Industry Categories</span>
+                            </div>
+                            <div class="stat">
+                                <strong>30 Years</strong>
+                                <span>Real Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Traditional vs Ask April Banner -->
+            <section class="comparison-banner">
+                <div class="container">
+                    <h2>Why Brick & Mortar Businesses Choose Ask April AI</h2>
+                    <div class="comparison-grid">
+                        <div class="traditional-side">
+                            <h3>Traditional HR Software</h3>
+                            <ul>
+                                <li>❌ Generic templates for all industries</li>
+                                <li>❌ No management training included</li>
+                                <li>❌ Built by tech companies who've never run retail</li>
+                                <li>❌ Expensive with hidden fees</li>
+                                <li>❌ No learning library for team development</li>
+                                <li>❌ One-size-fits-all approach</li>
+                            </ul>
+                        </div>
+                        <div class="april-side">
+                            <h3>Ask April AI</h3>
+                            <ul>
+                                <li>✅ Built specifically for brick & mortar businesses</li>
+                                <li>✅ 30 years of retail & restaurant expertise</li>
+                                <li>✅ AI coach available 24/7 for instant help</li>
+                                <li>✅ 250+ industry-specific video lessons</li>
+                                <li>✅ Freemium pricing that scales with you</li>
+                                <li>✅ Proven systems that actually work</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Features Section -->
+            <section class="ai-section">
+                <div class="container">
+                    <h2>AI That Actually Helps Managers</h2>
+                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">Other HR software gives you forms. We give you a coach with 30 years of experience.</p>
+                    
+                    <div class="ai-features">
+                        <div class="ai-feature-card">
+                            <h3>AI-Powered Difficult Conversations</h3>
+                            <p>Get instant AI coaching on handling performance issues, conflicts, and sensitive situations. April's AI analyzes your situation and provides proven scripts that work in real business scenarios.</p>
+                        </div>
+                        
+                        <div class="ai-feature-card">
+                            <h3>Smart Performance Coaching</h3>
+                            <p>AI-driven insights help you motivate underperformers, recognize top talent, and create personalized development plans that actually improve results using 30 years of retail wisdom.</p>
+                        </div>
+                        
+                        <div class="ai-feature-card">
+                            <h3>Intelligent Team Building</h3>
+                            <p>Get AI-powered strategies for improving team dynamics, reducing turnover, and creating a positive work culture. Real-time suggestions based on your team's specific challenges.</p>
+                        </div>
+                        
+                        <div class="ai-feature-card">
+                            <h3>AI Leadership Development</h3>
+                            <p>Personalized AI coaching develops the management skills that matter most for small business success. No generic advice - just proven strategies tailored to your leadership style.</p>
+                        </div>
+                        
+                        <div class="ai-feature-card">
+                            <h3>24/7 AI Management Advisor</h3>
+                            <p>Get instant answers to any management question, anytime. April's AI coach is always available to help with hiring decisions, policy questions, and day-to-day leadership challenges.</p>
+                        </div>
+                        
+                        <div class="ai-feature-card">
+                            <h3>AI-Generated HR Documents</h3>
+                            <p>Instantly create employee handbooks, performance reviews, job descriptions, and policies using AI trained on 30 years of successful retail operations. No templates - custom content for your business.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How is this different from BambooHR or Gusto?</div>
+                    <div class="faq-answer">Those are great tools for forms and payroll, but they don't make you a better manager. Ask April AI combines proven HR tools with management coaching from 30 years of retail experience. You get the systems AND the skills.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What makes the AI coach different?</div>
+                    <div class="faq-answer">April's AI is trained on real-world retail and small business experience, not generic management theory. It understands the unique challenges of small business and provides practical, actionable advice that actually works.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I cancel anytime?</div>
+                    <div class="faq-answer">Yes, absolutely. No contracts, no hidden fees. Cancel anytime with just a few clicks.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Do you integrate with payroll systems?</div>
+                    <div class="faq-answer">Yes, we integrate with popular payroll systems like QuickBooks, ADP, and others. Our Enterprise plan includes custom integrations.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How quickly can I get started?</div>
+                    <div class="faq-answer">You can be up and running in under 10 minutes. Our onboarding process is designed to get you value immediately, not weeks later.</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ask April AI. All rights reserved.</p>
+            <p>HR software built by retail experts for small business success.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Ask April AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .signup-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 20px;
+        }
+        
+        .signup-card {
+            background: white;
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .signup-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .signup-header h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .signup-header p {
+            color: #64748b;
+        }
+        
+        .plan-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: #f1f5f9;
+            padding: 5px;
+            border-radius: 8px;
+        }
+        
+        .plan-option {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: transparent;
+        }
+        
+        .plan-option.active {
+            background: white;
+            color: #2563eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .plan-summary {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .plan-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        
+        .plan-features {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .signup-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .signup-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+        }
+        
+        .login-link a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .back-link a {
+            color: #64748b;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .back-link a:hover {
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="back-link">
+                <a href="index.html">← Back to homepage</a>
+            </div>
+            
+            <div class="signup-header">
+                <h1>Start Your Free Account</h1>
+                <p>No credit card required. Cancel anytime.</p>
+            </div>
+            
+            <form id="signupForm" class="signup-form">
+                <!-- Plan Selection -->
+                <div class="plan-selector">
+                    <button type="button" class="plan-option active" data-plan="free">
+                        Free
+                    </button>
+                    <button type="button" class="plan-option" data-plan="starter">
+                        Starter
+                    </button>
+                    <button type="button" class="plan-option" data-plan="professional">
+                        Professional
+                    </button>
+                </div>
+                
+                <!-- Plan Summary -->
+                <div class="plan-summary" id="planSummary">
+                    <div class="plan-price">$0/month</div>
+                    <div class="plan-features">Up to 5 employees • Basic features • AI coaching (3 sessions/month)</div>
+                </div>
+                
+                <!-- Company Information -->
+                <div class="form-group">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-input" name="company" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Work Email</label>
+                    <input type="email" class="form-input" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">How many employees do you have?</label>
+                    <select class="form-input" name="employeeCount" required>
+                        <option value="">Select...</option>
+                        <option value="1-5">1-5 employees</option>
+                        <option value="6-15">6-15 employees</option>
+                        <option value="16-25">16-25 employees</option>
+                        <option value="26-50">26-50 employees</option>
+                        <option value="51-100">51-100 employees</option>
+                        <option value="100+">100+ employees</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="signup-btn">Create My Account</button>
+                
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Sign in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Plan selection logic
+        const planOptions = document.querySelectorAll('.plan-option');
+        const planSummary = document.getElementById('planSummary');
+        
+        const plans = {
+            free: {
+                price: '$0/month',
+                features: 'Up to 5 employees • Basic features • AI coaching (3 sessions/month)'
+            },
+            starter: {
+                price: '$29/month',
+                features: 'Up to 25 employees • Full features • Unlimited AI coaching • 14-day free trial'
+            },
+            professional: {
+                price: '$99/month',
+                features: 'Up to 100 employees • Advanced features • Custom workflows • 14-day free trial'
+            }
+        };
+        
+        planOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove active class from all options
+                planOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked option
+                option.classList.add('active');
+                
+                // Update plan summary
+                const selectedPlan = option.dataset.plan;
+                const plan = plans[selectedPlan];
+                planSummary.innerHTML = `
+                    <div class="plan-price">${plan.price}</div>
+                    <div class="plan-features">${plan.features}</div>
+                `;
+            });
+        });
+        
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get selected plan
+            const selectedPlan = document.querySelector('.plan-option.active').dataset.plan;
+            
+            // Get form data
+            const formData = new FormData(this);
+            const userData = {
+                plan: selectedPlan,
+                company: formData.get('company'),
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                employeeCount: formData.get('employeeCount')
+            };
+            
+            // Store in localStorage for demo purposes
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+        });
+        
+        // Check for plan parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const planParam = urlParams.get('plan');
+        if (planParam && plans[planParam]) {
+            // Select the plan option
+            planOptions.forEach(opt => opt.classList.remove('active'));
+            document.querySelector(`[data-plan="${planParam}"]`).classList.add('active');
+            
+            // Update summary
+            const plan = plans[planParam];
+            planSummary.innerHTML = `
+                <div class="plan-price">${plan.price}</div>
+                <div class="plan-features">${plan.features}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
