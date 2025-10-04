@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Ask April AI - Get the Exact Words for Any Leadership Conversation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #FFD700;
+        }
+
+        .nav-link.active {
+            color: #FFD700;
+        }
+
+        .cta-btn {
+            background: #FFD700;
+            color: #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #333;
+            color: #FFD700;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #FFD700 0%, #FFF 50%, #f8f9fa 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .hero .highlight {
+            color: #333;
+            background: rgba(255, 215, 0, 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Interactive Tool Section */
+        .tool-section {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tool-header h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .tool-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Conversation Builder Styles */
+        .conversation-builder {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 2px solid #FFD700;
+        }
+
+        .builder-step {
+            display: none;
+        }
+
+        .builder-step.active {
+            display: block;
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .step-header h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background: #FFD700;
+            transform: scale(1.2);
+        }
+
+        .situation-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+            background: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: #666;
+            text-align: center;
+        }
+
+        .category-btn:hover {
+            border-color: #FFD700;
+            background: #fffbf0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+        }
+
+        .category-btn.selected {
+            border-color: #FFD700;
+            background: #FFD700;
+            color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .btn-primary {
+            background: #333;
+            color: #FFD700;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #555;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #333;
+            padding: 1rem 2rem;
+            border: 2px solid #333;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+            color: #FFD700;
+        }
+
+        /* Script Output Styles */
+        .script-output {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.1);
+        }
+
+        .script-section {
+            margin-bottom: 2rem;
+        }
+
+        .script-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .script-section h4 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .script-text {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #000000;
+            border-left: 4px solid #FFD700;
+            font-weight: 600;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Coaching Tips Styles */
+        .coaching-tips {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tip-section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .tip-section:hover {
+            border-color: #FFD700;
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.1);
+        }
+
+        .tip-section h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tip-section ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tip-section li {
+            padding: 0.75rem 0;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .tip-section li::before {
+            content: "✓";
+            color: #FFD700;
+            font-weight: bold;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+
+        /* Loading State */
+        .builder-loading {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 300px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .builder-loading p {
+            margin-top: 1rem;
+            color: #666;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e0e0e0;
+            border-top: 3px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Examples Section */
+        .examples-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .example-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-situation {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .example-script {
+            color: #000;
+            font-weight: 500;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #FFD700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .situation-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .conversation-builder {
+                padding: 1.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Ask April AI</a>
+            <div class="nav-menu">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#ai-coach" class="nav-link">AI Coach + HR</a>
+                <a href="courses.html" class="nav-link">Courses + Training</a>
+                <a href="just-ask-april.html" class="nav-link active">Just Ask April</a>
+                <a href="index.html#pricing" class="nav-link">Pricing</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="#" class="cta-btn">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1><span class="highlight">Just Ask April AI</span><br>Get the Exact Words</h1>
+                <p>Never struggle with difficult conversations again. April AI gives you professional scripts, coaching tips, and confidence for any leadership situation.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2000+</div>
+                        <div class="stat-label">Leaders Coached</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Conversation Types</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Tool Section -->
+        <section class="tool-section">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Transform Any Situation Into Professional Dialogue</h2>
+                    <p>Choose your situation, describe the details, and get a complete conversation script with coaching guidance.</p>
+                </div>
+
+                <div class="conversation-builder" style="position: relative;">
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step-dot active" id="dot-1"></div>
+                        <div class="step-dot" id="dot-2"></div>
+                        <div class="step-dot" id="dot-3"></div>
+                    </div>
+
+                    <!-- Step 1: Situation Input -->
+                    <div class="builder-step active" id="step-1">
+                        <div class="step-header">
+                            <h3>1. Choose Your Situation Type</h3>
+                        </div>
+                        <div class="situation-categories">
+                            <button class="category-btn" onclick="selectCategory('performance')">
+                                📊<br>Performance Issues
+                            </button>
+                            <button class="category-btn" onclick="selectCategory('attendance')">
+                                🕐<br>Attendance Problems
+                            </button>
+                            <button class="category-btn" onclick="selectCategory('behavior')">
+                                🗣️<br>Behavior/Attitude
+                            </button>
+                            <button class="category-btn" onclick="selectCategory('termination')">
+                                📋<br>Termination
+                            </button>
+                            <button class="category-btn" onclick="selectCategory('feedback')">
+                                💬<br>Giving Feedback
+                            </button>
+                            <button class="category-btn" onclick="selectCategory('other')">
+                                ❓<br>Other
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="situation-details">Describe your specific situation:</label>
+                            <textarea id="situation-details" placeholder="e.g., 'My employee Sarah has missed her sales targets for the third month in a row. She seems frustrated but won't talk about what's wrong. I need to address this but don't want to make things worse. She's usually a good performer but something has changed.'" rows="4"></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn-primary" onclick="generateScript()">Get My Professional Script</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Generated Script -->
+                    <div class="builder-step" id="step-2">
+                        <div class="step-header">
+                            <h3>2. Your Professional Conversation Script</h3>
+                        </div>
+                        <div class="script-output">
+                            <div class="script-section">
+                                <h4>🚀 Opening (Set the Right Tone)</h4>
+                                <div class="script-text" id="opening-script"></div>
+                            </div>
+                            <div class="script-section">
+                                <h4>💬 Main Discussion (Address the Issue)</h4>
+                                <div class="script-text" id="main-script"></div>
+                            </div>
+                            <div class="script-section">
+                                <h4>🎯 Next Steps (Create Action Plan)</h4>
+                                <div class="script-text" id="action-script"></div>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn-secondary" onclick="getCoachingTips()">Get Coaching & Delivery Tips</button>
+                            <button class="btn-primary" onclick="startOver()">Try Another Situation</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Coaching Tips -->
+                    <div class="builder-step" id="step-3">
+                        <div class="step-header">
+                            <h3>3. Professional Coaching & Delivery Guidance</h3>
+                        </div>
+                        <div class="coaching-tips">
+                            <div class="tip-section">
+                                <h4>🎯 Tone & Body Language</h4>
+                                <ul id="tone-tips"></ul>
+                            </div>
+                            <div class="tip-section">
+                                <h4>🗣️ Delivery Guidance</h4>
+                                <ul id="delivery-tips"></ul>
+                            </div>
+                            <div class="tip-section">
+                                <h4>📋 Follow-Up Actions</h4>
+                                <ul id="followup-tips"></ul>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn-primary" onclick="startOver()">Try Another Situation</button>
+                        </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="builder-loading" id="script-loading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>April AI is crafting your professional conversation script...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section class="examples-section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2.5rem; color: #333;">Real Examples from April AI</h2>
+                <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem; color: #666;">See how April AI transforms awkward situations into professional conversations</p>
+                
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-title">Performance Issue</div>
+                        <div class="example-situation">"Employee missed targets three months in a row"</div>
+                        <div class="example-script">"Hi Sarah, I'd like to discuss your performance this quarter. I've noticed we haven't quite hit our targets, and I want to understand what challenges you're facing so we can work together on solutions."</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-title">Attendance Problem</div>
+                        <div class="example-situation">"Team member frequently late to work"</div>
+                        <div class="example-script">"Hi Mike, I wanted to talk with you about attendance. I've noticed you've been late several times this month, and I want to make sure everything is okay and see how we can address this together."</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-title">Giving Feedback</div>
+                        <div class="example-situation">"Need to give constructive feedback on project"</div>
+                        <div class="example-script">"Hi Lisa, I wanted to give you some feedback on the Johnson project. You did some great work on the analysis, and I also have some suggestions for how to make the presentation even stronger next time."</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Conversation Builder Manager
+        class ConversationBuilder {
+            constructor() {
+                this.selectedCategory = null;
+                this.currentStep = 1;
+                this.scriptTemplates = this.initializeTemplates();
+            }
+
+            initializeTemplates() {
+                return {
+                    performance: {
+                        opening: "Hi {name}, I'd like to discuss your performance this {period}. I've noticed we haven't quite hit our targets, and I want to understand what challenges you're facing so we can work together on solutions.",
+                        main: "Let's look at the specific areas where we can improve. Can you walk me through what you think has been the biggest obstacle to reaching your goals? I'm here to support you, not blame you.",
+                        action: "Let's create a plan together. What support do you need from me? Let's set some specific, achievable goals for the next {timeframe} and check in weekly to track progress.",
+                        coaching: {
+                            tone: ["Stay calm and collaborative", "Use 'we' language instead of 'you'", "Ask questions before making statements", "Listen more than you speak"],
+                            delivery: ["Choose a private, comfortable setting", "Start with something positive if possible", "Be specific about behaviors, not personality", "Focus on solutions, not problems"],
+                            followup: ["Schedule follow-up meetings in advance", "Document the conversation and agreed actions", "Provide resources or training if needed", "Check in informally between formal meetings"]
+                        }
+                    },
+                    attendance: {
+                        opening: "Hi {name}, I wanted to talk with you about attendance. I've noticed you've been late/absent {frequency}, and I want to make sure everything is okay and see how we can address this together.",
+                        main: "Help me understand what's happening. Are there circumstances I should know about? I want to support you, but I also need to ensure our team can rely on consistent coverage.",
+                        action: "Let's work on a plan to improve attendance. What changes can you commit to? If there are underlying issues, let's discuss how I can help or what accommodations might be appropriate.",
+                        coaching: {
+                            tone: ["Show concern, not anger", "Be empathetic while maintaining expectations", "Ask about underlying causes", "Separate the person from the behavior"],
+                            delivery: ["Address promptly, don't let it build up", "Be factual about the impact on the team", "Offer support while being clear about expectations", "Give them a chance to explain first"],
+                            followup: ["Set clear attendance expectations", "Monitor improvement closely", "Provide positive reinforcement for progress", "Document patterns and improvements"]
+                        }
+                    },
+                    behavior: {
+                        opening: "Hi {name}, I'd like to talk about some interactions that have come to my attention. I want to make sure we're all working together effectively and address any concerns.",
+                        main: "I've observed/heard about {specific behavior}. This impacts our team environment and our ability to work well together. Help me understand your perspective on these situations.",
+                        action: "Moving forward, I need to see {specific changes}. What support do you need to make these adjustments? Let's agree on specific behaviors and check in regularly on progress.",
+                        coaching: {
+                            tone: ["Be direct but not confrontational", "Focus on impact, not intent", "Stay professional and factual", "Show you care about their success"],
+                            delivery: ["Address behavior immediately when possible", "Use specific examples, not generalizations", "Explain the impact on others", "Be clear about expectations going forward"],
+                            followup: ["Monitor interactions closely", "Provide feedback regularly", "Acknowledge improvements immediately", "Address any relapses quickly"]
+                        }
+                    },
+                    termination: {
+                        opening: "Hi {name}, I need to have a difficult conversation with you today. Despite our previous discussions and improvement attempts, we haven't seen the changes needed, and I have to let you go.",
+                        main: "This decision is based on {specific reasons}. We've tried {previous interventions}, but unfortunately, the situation hasn't improved to the level we need for this role.",
+                        action: "Your last day will be {date}. Here's what happens next: {logistics}. I want to make this transition as smooth as possible for everyone. Do you have any questions about the process?",
+                        coaching: {
+                            tone: ["Be direct and compassionate", "Keep it brief and factual", "Stay calm if they get emotional", "Don't over-explain or justify"],
+                            delivery: ["Have HR present if possible", "Choose appropriate timing and location", "Have all paperwork ready", "Be prepared for various reactions"],
+                            followup: ["Handle logistics professionally", "Communicate with team appropriately", "Document the conversation thoroughly", "Follow company termination procedures exactly"]
+                        }
+                    },
+                    feedback: {
+                        opening: "Hi {name}, I wanted to give you some feedback on {specific situation/project}. I think you did some great work, and I also have some suggestions for how to make it even better next time.",
+                        main: "What went really well was {positive specifics}. For future projects, I'd love to see you focus on {improvement areas}. What are your thoughts on this feedback?",
+                        action: "Let's set some goals for applying this feedback. What would you like to work on first? How can I support your development in these areas?",
+                        coaching: {
+                            tone: ["Balance positive and constructive feedback", "Be specific and actionable", "Make it about growth, not criticism", "Ask for their input and ideas"],
+                            delivery: ["Give feedback regularly, not just during reviews", "Focus on behaviors that can be changed", "Provide examples and suggestions", "End with encouragement"],
+                            followup: ["Check in on progress regularly", "Provide resources for improvement", "Acknowledge improvements when you see them", "Keep the development conversation ongoing"]
+                        }
+                    },
+                    other: {
+                        opening: "Hi {name}, I wanted to talk with you about {situation}. I want to make sure we address this properly and work together toward a positive outcome.",
+                        main: "Let me share what I've observed: {specific details}. I'd like to understand your perspective on this and work together to find the best path forward.",
+                        action: "Based on our discussion, here's what I think we should do next: {action plan}. What are your thoughts on this approach? How can I support you in making this work?",
+                        coaching: {
+                            tone: ["Stay curious and open-minded", "Focus on understanding before being understood", "Maintain respect throughout the conversation", "Be solution-oriented"],
+                            delivery: ["Prepare your key points in advance", "Choose the right time and place", "Be specific about observed behaviors", "Ask for their input and ideas"],
+                            followup: ["Document key agreements made", "Set clear next steps and timelines", "Follow through on your commitments", "Check in regularly on progress"]
+                        }
+                    }
+                };
+            }
+
+            updateStepIndicator(step) {
+                // Reset all dots
+                document.querySelectorAll('.step-dot').forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Activate dots up to current step
+                for (let i = 1; i <= step; i++) {
+                    document.getElementById(`dot-${i}`).classList.add('active');
+                }
+            }
+
+            selectCategory(category) {
+                this.selectedCategory = category;
+                
+                // Update UI
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                event.target.classList.add('selected');
+            }
+
+            async generateScript() {
+                const situation = document.getElementById('situation-details').value.trim();
+                
+                if (!situation) {
+                    alert('Please describe your situation first.');
+                    return;
+                }
+
+                // Show loading
+                document.getElementById('script-loading').style.display = 'block';
+                document.getElementById('step-1').style.display = 'none';
+
+                // Simulate API processing time
+                await new Promise(resolve => setTimeout(resolve, 3000));
+
+                // Get template based on selected category or default to performance
+                const category = this.selectedCategory || 'performance';
+                const template = this.scriptTemplates[category];
+
+                // Populate scripts with more realistic content
+                document.getElementById('opening-script').textContent = template.opening.replace(/{[^}]+}/g, '[specific details]');
+                document.getElementById('main-script').textContent = template.main.replace(/{[^}]+}/g, '[specific details]');
+                document.getElementById('action-script').textContent = template.action.replace(/{[^}]+}/g, '[specific timeframe]');
+
+                // Hide loading and show script
+                document.getElementById('script-loading').style.display = 'none';
+                document.getElementById('step-2').classList.add('active');
+                this.currentStep = 2;
+                this.updateStepIndicator(2);
+            }
+
+            getCoachingTips() {
+                const category = this.selectedCategory || 'performance';
+                const coaching = this.scriptTemplates[category].coaching;
+
+                // Populate coaching tips
+                this.populateTips('tone-tips', coaching.tone);
+                this.populateTips('delivery-tips', coaching.delivery);
+                this.populateTips('followup-tips', coaching.followup);
+
+                // Show coaching step
+                document.getElementById('step-2').classList.remove('active');
+                document.getElementById('step-3').classList.add('active');
+                this.currentStep = 3;
+                this.updateStepIndicator(3);
+            }
+
+            populateTips(elementId, tips) {
+                const ul = document.getElementById(elementId);
+                ul.innerHTML = '';
+                tips.forEach(tip => {
+                    const li = document.createElement('li');
+                    li.textContent = tip;
+                    ul.appendChild(li);
+                });
+            }
+
+            startOver() {
+                // Reset form
+                document.getElementById('situation-details').value = '';
+                this.selectedCategory = null;
+                
+                // Reset category buttons
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+
+                // Reset steps
+                document.querySelectorAll('.builder-step').forEach(step => {
+                    step.classList.remove('active');
+                });
+                document.getElementById('step-1').classList.add('active');
+                this.currentStep = 1;
+                this.updateStepIndicator(1);
+            }
+        }
+
+        // Global functions
+        let conversationBuilder;
+
+        function selectCategory(category) {
+            if (!conversationBuilder) {
+                conversationBuilder = new ConversationBuilder();
+            }
+            conversationBuilder.selectCategory(category);
+        }
+
+        function generateScript() {
+            conversationBuilder.generateScript();
+        }
+
+        function getCoachingTips() {
+            conversationBuilder.getCoachingTips();
+        }
+
+        function startOver() {
+            conversationBuilder.startOver();
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            conversationBuilder = new ConversationBuilder();
+            console.log('Just Ask April AI tool initialized successfully!');
+        });
+    </script>
+</body>
+</html>
